@@ -17,19 +17,24 @@ document.getElementById('excelFile').addEventListener('change', function(e) {
         }
   
         var resultado = data.filter(function(obj) {
-          return (valorBuscado !== "" && (obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) || 
-                  obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase()))) ||
-                 (categoriaSeleccionada !== "" && obj.categoria === categoriaSeleccionada);
+          if (valorBuscado !== "" && categoriaSeleccionada === "") {
+            return obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) ||
+                   obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase());
+          } else if (valorBuscado === "" && categoriaSeleccionada !== "") {
+            return obj.categoria === categoriaSeleccionada;
+          } else {
+            return false;
+          }
         });
   
         if (resultado.length > 0) {
           var coberturas = resultado.map(function(obj) {
-            return '<p id="p_linea"">'+ obj.nombre +'</p>' +
-            '<p class="resultado">CategorÍa: ' + obj.categoria + '</p>' +
-            '<p class="resultado">SubcategorÍa: ' + obj.subcategoria + '</p>' +
-            '<p class="resultado">Normativa que la incluye: ' + obj.norma + '</p>' +
-            '<p class="resultado"><b>Nivel de cobertura: ' + (obj.cobertura * 100) + '</b>%</p>' +
-            '<p class="resultado">Recomendaciones de uso: ' + obj.recomendaciones + '</p>';
+            return '<p id="p_linea">' + obj.nombre + '</p>' +
+              '<p class="resultado">CategorÍa: ' + obj.categoria + '</p>' +
+              '<p class="resultado">SubcategorÍa: ' + obj.subcategoria + '</p>' +
+              '<p class="resultado">Normativa que la incluye: ' + obj.norma + '</p>' +
+              '<p class="resultado"><b>Nivel de cobertura: ' + (obj.cobertura * 100) + '</b>%</p>' +
+              '<p class="resultado">Recomendaciones de uso: ' + obj.recomendaciones + '</p>';
           });
           document.getElementById('texto-seccion').innerHTML = coberturas.join('<hr>');
           
