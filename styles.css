@@ -119,3 +119,8 @@ main {
     font-size: 14px;
     margin: 0px 25px 10px 75px !important;
 }
+
+hr {
+    border-top: 1px solid #37BBED; /* Crear una línea en la parte superior */
+    margin: 10px 25px; /* Margen para dar espacio */
+}
