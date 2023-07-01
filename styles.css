@@ -1,0 +1,121 @@
+header {
+    background-color: #50535C;
+    width: 100%;
+    /*border-bottom-left-radius: 15px;  redondeado de la esquina inferior izquierda */
+    /*border-bottom-right-radius: 15px;  redondeado de la esquina inferior derecha */
+}
+
+body {
+    margin: 0; 
+    padding: 0;
+}
+
+#logo {
+    margin-left: 20px;
+    padding: 12px;
+    height: 75px; 
+    width: auto; 
+}
+
+#marca {
+    border-top: 1px solid #E7E7E7;
+    display: flex;
+    align-items: space-around;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 26px;
+    width: 90%;
+    height: auto;
+    max-width: 1000px;
+   }
+
+#header-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+#texto-seccion {
+    flex: 2; 
+}
+
+#buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%; 
+    margin: 0 auto;
+}
+
+#busqueda, #buscador button {
+    font-size: 16px;
+    padding: 10px;
+    margin: 4px;
+    margin-bottom: 42px;
+    border: 1px solid #E7E7E7; 
+    border-radius: 5px;
+    width: 45%;
+    outline: none;
+    box-sizing: border-box; 
+}
+
+#buscador button {
+    padding: 10px 20px;
+    width: auto;
+}
+
+#buscador-seccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-direction: column;
+}
+
+#titulo {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    padding: 6;
+    margin: 10px 25px 10px 25px;
+}
+
+.parrafo {
+    font-size: 14px;
+    font-family: "Encode Sans", sans-serif;
+    line-height: 2;
+    padding: 6;
+    margin: 10px 25px 10px 25px;
+}
+
+#texto-arriba {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 26px;
+}
+
+#p_linea {
+    font-family: "Encode Sans", sans-serif;
+    color: #50535C;
+    line-height: 1.1;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0px 25px 10px 75px !important;
+}
+.resultado {
+    font-family: "Encode Sans", sans-serif;
+    color: #50535C;
+    line-height: 1.1;
+    font-size: 14px;
+    margin: 0px 25px 10px 75px !important;
+}
