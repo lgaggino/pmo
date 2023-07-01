@@ -69,7 +69,6 @@ main {
     padding: 10px 20px;
     width: 50%;
 }
-
 .separator, #buscador label {
     font-size: 17px;
     font-family: "Encode Sans", sans-serif;
@@ -145,3 +144,5 @@ hr {
     border-top: 0.75px solid #37BBED;
     margin: 20px 75px 20px 75px
 }
+
+
