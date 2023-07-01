@@ -18,10 +18,17 @@ document.getElementById('excelFile').addEventListener('change', function(e) {
 
       var resultado = data.filter(function(obj) {
         if (valorBuscado !== "" && categoriaSeleccionada === "") {
-          return obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) ||
-            obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase());
+          return (
+            obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) ||
+            obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase())
+          );
         } else if (valorBuscado === "" && categoriaSeleccionada !== "") {
           return obj.categoria === categoriaSeleccionada;
+        } else if (valorBuscado !== "" && categoriaSeleccionada !== "") {
+          return (
+            obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) &&
+            obj.categoria === categoriaSeleccionada
+          );
         } else {
           return false;
         }
@@ -29,19 +36,17 @@ document.getElementById('excelFile').addEventListener('change', function(e) {
 
       if (resultado.length > 0) {
         var coberturas = resultado.map(function(obj) {
-          return '<p id="p_linea">' + obj.nombre + '</p>' +
-            '<p class="resultado">CategorÍa: ' + obj.categoria + '</p>' +
-            '<p class="resultado">SubcategorÍa: ' + obj.subcategoria + '</p>' +
-            '<p class="resultado">Normativa que la incluye: ' + obj.norma + '</p>' +
-            '<p class="resultado"><b>Nivel de cobertura: ' + (obj.cobertura * 100) + '</b>%</p>' +
-            '<p class="resultado">Recomendaciones de uso: ' + obj.recomendaciones + '</p>';
-        });
-        document.getElementById('texto-seccion').innerHTML = coberturas.join('<hr>');
-
-      } else {
-        alert('No se encontró el valor buscado');
-      }
-    });
-  };
-  reader.readAsText(file);
-});
+          return (
+            '<p id="p_linea">' +
+            obj.nombre +
+            "</p>" +
+            '<p class="resultado">CategorÍa: ' +
+            obj.categoria +
+            "</p>" +
+            '<p class="resultado">SubcategorÍa: ' +
+            obj.subcategoria +
+            "</p>" +
+            '<p class="resultado">Normativa que la incluye: ' +
+            obj.norma +
+            "</p>" +
+            '<p class="resultado"><b>Nivel de cobertura: ' +
