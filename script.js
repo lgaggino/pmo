@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
     /* Cargar archivo json*/
-    fetch('consolidado.json')
+    fetch('data/consolidado.json')
     .then(response => response.json())
     .then(data => {
 
