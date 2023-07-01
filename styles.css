@@ -1,8 +1,8 @@
 header {
-    background-color: #50535C;
+    background-color: #50535C; /* #37BBED */
     width: 100%;
-    /*border-bottom-left-radius: 15px;  redondeado de la esquina inferior izquierda */
-    /*border-bottom-right-radius: 15px;  redondeado de la esquina inferior derecha */
+    /* border-bottom-left-radius: 15px;
+    /* border-bottom-right-radius: 15px; */
 }
 
 body {
@@ -48,25 +48,34 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 70%; 
     margin: 0 auto;
 }
 
-#busqueda, #buscador button {
+#busqueda, #buscador button, #categoria {
     font-size: 16px;
     padding: 10px;
     margin: 4px;
     margin-bottom: 42px;
     border: 1px solid #E7E7E7; 
     border-radius: 5px;
-    width: 45%;
+    width: 100%;
     outline: none;
     box-sizing: border-box; 
 }
 
 #buscador button {
     padding: 10px 20px;
-    width: auto;
+    width: 50%;
+}
+
+.separator, #buscador label {
+    font-size: 17px;
+    font-family: "Encode Sans", sans-serif;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
 #buscador-seccion {
@@ -82,7 +91,7 @@ main {
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     padding: 6;
-    margin: 10px 25px 10px 25px;
+    margin: 10px 25px 10px 88px;
 }
 
 .parrafo {
@@ -90,7 +99,7 @@ main {
     font-family: "Encode Sans", sans-serif;
     line-height: 2;
     padding: 6;
-    margin: 10px 25px 10px 25px;
+    margin: 10px 25px 35px 116px;
 }
 
 #texto-arriba {
@@ -104,23 +113,35 @@ main {
     padding-top: 26px;
 }
 
+#texto-seccion {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 94px;
+    margin-right: 50px;
+    padding-top: 26px;
+}
+
 #p_linea {
     font-family: "Encode Sans", sans-serif;
     color: #50535C;
     line-height: 1.1;
     font-weight: bold;
     font-size: 16px;
-    margin: 0px 25px 10px 75px !important;
+    margin: 0px 25px 10px 75px;
 }
 .resultado {
     font-family: "Encode Sans", sans-serif;
     color: #50535C;
     line-height: 1.1;
     font-size: 14px;
-    margin: 0px 25px 10px 75px !important;
+    margin: 0px 25px 10px 75px;
 }
 
 hr {
-    border-top: 1px solid #37BBED; /* Crear una línea en la parte superior */
-    margin: 10px 25px; /* Margen para dar espacio */
+    width: 60%;
+    border-top: 0.75px solid #37BBED;
+    margin: 20px 75px 20px 75px
 }
