@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
-    /* Cargar archivo json*/
+    /* Cargar archivo json */
     fetch('https://lgaggino.github.io/pmo/consolidado.json')
     .then(response => response.json())
     .then(data => {
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             /* Si se encontró al menos un resultado, muestra el valor de la columna "cobertura" */
             if (resultado.length > 0) {
+                document.getElementById('texto-seccion').style.display = 'block'; // Muestra la sección de resultados
                 var coberturas = resultado.map(function(obj) {
                     return '<p id="p_linea"">'+ obj.nombre +'</p>' +
                            '<p class="resultado">CategorÍa: ' + obj.categoria + '</p>' +
