@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    /* Cargar archivo json */
+
+    /* Cargar archivo json*/
     fetch('https://lgaggino.github.io/pmo/consolidado.json')
     .then(response => response.json())
     .then(data => {
+
         /* Obtener categorías únicas para el desplegable */
         let categories = [...new Set(data.map(item => item.categoria))];
         let selectElement = document.getElementById('categoria');
@@ -13,25 +15,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
             selectElement.appendChild(optionElement);
         });
 
+        /* Cuando el campo de búsqueda cambia, vacía el desplegable */
+        document.getElementById('busqueda').addEventListener('input', function(e) {
+            document.getElementById('categoria').value = '';
+        });
+
+        /* Cuando el desplegable cambia, vacía el campo de búsqueda */
+        document.getElementById('categoria').addEventListener('change', function(e) {
+            document.getElementById('busqueda').value = '';
+        });
+
         document.getElementById('buscador').addEventListener('submit', function(e) {
             e.preventDefault(); // Evita que la página se recargue al enviar el formulario
 
             var valorBuscado = document.getElementById('busqueda').value;
             var valorCategoria = document.getElementById('categoria').value;
 
-            /* Si el valor buscado y el valorCategoria están vacíos, no se realiza la búsqueda */
-            if (valorBuscado === "" && valorCategoria === "") {
-                document.getElementById('texto-seccion').innerHTML = '';
-                return;
-            }
-
             /* Busca el valor en el dataset */
             var resultado = data.filter(function(obj) {
-                if (valorBuscado === "") {
-                    return obj.categoria === valorCategoria; // busca solo por categoría
+                if (valorBuscado !== "") {
+                    return obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) || obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase());
                 } else {
-                    return (obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) || obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase())) &&
-                           (valorCategoria === "" || obj.categoria === valorCategoria); // busca por texto y categoría
+                    return obj.categoria === valorCategoria;
                 }
             });
 
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                            '<p class="resultado">Recomendaciones de uso: ' + obj.recomendaciones + '</p>';
                 });
                 document.getElementById('texto-seccion').innerHTML = coberturas.join('<hr>');
+                
             } else {
                 alert('No se encontró el valor buscado');
             }
