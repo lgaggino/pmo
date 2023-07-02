@@ -70,7 +70,7 @@ main {
     width: 50%;
 }
 .separator, #buscador label {
-    font-size: 17px;
+    font-size: 1px;
     font-family: "Encode Sans", sans-serif;
     text-align: center;
     width: 100%;
@@ -85,7 +85,7 @@ main {
     flex-direction: column;
 }
 
-#titulo {
+#titulo, #titulo_2 {
     font-size: 22px;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
@@ -94,12 +94,13 @@ main {
 }
 
 .parrafo {
-    font-size: 14px;
+    font-size: 16px;
     font-family: "Encode Sans", sans-serif;
     line-height: 2;
     padding: 6;
     margin: 10px 25px 35px 116px;
 }
+
 
 #texto-arriba {
     display: flex;
@@ -113,14 +114,8 @@ main {
 }
 
 #texto-seccion {
-    display: flex;
-    justify-content: left;
-    align-items: flex-start;
-    flex: 1;
-    flex-direction: column;
-    margin-left: 94px;
-    margin-right: 50px;
-    padding-top: 26px;
+    display: none;
+
 }
 
 #p_linea {
