@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             var valorBuscado = document.getElementById('busqueda').value;
             var valorCategoria = document.getElementById('categoria').value;
 
-            /* Si el valor buscado está vacío, no se realiza la búsqueda */
+            /* Si el valor buscado y el valorCategoria están vacíos, no se realiza la búsqueda */
             if (valorBuscado === "" && valorCategoria === "") {
                 document.getElementById('texto-seccion').innerHTML = '';
                 return;
@@ -27,8 +27,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             /* Busca el valor en el dataset */
             var resultado = data.filter(function(obj) {
-                return (obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) || obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase())) &&
-                       (valorCategoria === "" || obj.categoria === valorCategoria);
+                if (valorBuscado === "") {
+                    return obj.categoria === valorCategoria; // busca solo por categoría
+                } else {
+                    return (obj.nombre.toLowerCase().includes(valorBuscado.toLowerCase()) || obj.categoria.toLowerCase().includes(valorBuscado.toLowerCase())) &&
+                           (valorCategoria === "" || obj.categoria === valorCategoria); // busca por texto y categoría
+                }
             });
 
             /* Si se encontró al menos un resultado, muestra el valor de la columna "cobertura" */
