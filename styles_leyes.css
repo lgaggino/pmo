@@ -1,8 +1,6 @@
 header {
-    background-color: #50535C; /* #37BBED */
+    background-color: #50535C;
     width: 100%;
-    /* border-bottom-left-radius: 15px;
-    /* border-bottom-right-radius: 15px; */
 }
 
 body {
@@ -55,7 +53,7 @@ main {
     margin: 0 auto;
 }
 
-#busqueda, #buscador button, #categoria, #pmo, #leyes {
+#busqueda, #buscador button, #categoria {
     font-size: 16px;
     padding: 10px;
     margin: 4px;
@@ -65,20 +63,6 @@ main {
     width: 100%;
     outline: none;
     box-sizing: border-box; 
-}
-
-#pmo, #leyes {
-    margin: 15px;
-    width: 28%;
-    background-color: #50535C;
-    color: #E7E7E7;
-    margin-bottom: 42px;
-}
-
-#pmo:hover, #leyes:hover {
-    background-color: #E7E7E7;
-    color: #50535C;
-    border-color: #50535C;;
 }
 
 label[for="categoria"], label[for="busqueda"], .texto-o {
@@ -108,17 +92,6 @@ label[for="categoria"], label[for="busqueda"], .texto-o {
     flex-direction: column;
 }
 
-.buttons-wrapper {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-#buscar {
-    width: 50%;
-    margin-right: 10px;
-}
-
 select#categoria {
     color: #757883;
     font-family: "Roboto", sans-serif;
@@ -141,12 +114,12 @@ select#categoria {
     margin: 25px 25px 20px 45px;
 }
 
-.titulo-index {
+#titulo-leyes {
     font-size: 22px;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     padding: 6px;
-    margin: 15px 15px 8px 25px;
+    margin: 25px 25px 10px 100px;
 }
 
 .parrafo {
@@ -155,6 +128,19 @@ select#categoria {
     line-height: 2;
     padding: 6;
     margin: 10px 25px 35px 0;
+}
+
+#leyes {
+    font-size: 16px;
+    font-family: "Encode Sans", sans-serif;
+    line-height: 1.8;
+    column-count: 2;
+    column-gap:0px;
+
+}
+
+#leyes details {
+    break-inside: avoid-column;
 }
 
 #texto-arriba {
@@ -206,6 +192,7 @@ hr {
     font-size: 14px;
     font-family: "Encode Sans", sans-serif;
     color: #E7E7E7;
+    background-color: #50535C;
     padding: 10px;
     border: 1px solid #f0f0f0;
     border-radius: 5px;
@@ -213,7 +200,6 @@ hr {
     outline: none;
     box-sizing: border-box;
     text-align: center;
-    background-color: #50535C;
     text-decoration: none;
 }
 
@@ -223,111 +209,149 @@ hr {
     cursor: pointer;
 }
 
+
 .acciones a.btn {
     display: inline-block;
 }
 
-.contenedor {
-    background-color: #E7E7E7;
-    border: #50535C;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 60px 240px 0px 240px;
-    min-width: 300px;
+details {
+    margin: 10px 25px 10px 110px;
 }
 
-.contenedor p {
-    font-size: 16px;
-    font-family: "Encode Sans", sans-serif;
-    line-height: 2;
-    padding: 6px;
-    margin: 25px;
-    text-align: justify;
+details > summary {
+    list-style: none;
 }
 
-.links {
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+details > summary::before {
+    content: '▶';
     color: #50535C;
-    font-family: "Encode Sans", sans-serif;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration-line: none;
+    display: inline-block;
+    margin-right: 5px;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease-in-out;
 }
 
-.links:hover {
-    color: #37BBED;
-    font-family: "Encode Sans", sans-serif;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration-line: none;
+details[open] > summary::before {
+    transform: rotate(-90deg);
 }
 
-@media screen and (max-width: 768px) {
-    h1 {
-        min-width: auto;
+ul {
+    list-style-type: none;
+    margin-top: 5px;
+}
+
+  @media screen and (max-width: 768px) { /* Tablet */
+    h1, #logo {
+        margin-left: 16px;
     }
 
     #marca {
         flex-direction: column;
+        align-items: center;
         margin-top: 30px;
+        width: 100%;
     }
 
     #buscador {
         width: 90%; 
     }
 
-    #pmo, #leyes {
-        width: 90%;
+    #busqueda, #buscador button, #categoria {
+        font-size: 14px;
+        width: 100%;
     }
 
     #buscador button {
         width: 100%;
     }
 
-    .buttons-wrapper {
-        flex-direction: column;
+    #titulo, #titulo_2 {
+        font-size: 20px;
     }
 
-    #buscar {
-        width: 100%;
-        margin-right: 0;
-    }
-
-    #texto-arriba {
+    .titulo-resultado, #titulo-leyes {
+        font-size: 20px;
         margin-left: 20px;
         margin-right: 20px;
     }
 
-    .contenedor {
-        margin: 30px 20px;
-    }
-}
-
-@media screen and (max-width: 425px) {
-    h1 {
-        margin-left: 16px;
-        font-size: 1.5em;
-    }
-
-    #logo {
-        margin-left: 16px;
-        height: 50px;
-    }
-
-    #marca {
-        margin-top: 30px;
-    }
-
-    #buscador button {
-        padding: 5px 10px;
+    .parrafo, #leyes {
+        font-size: 14px;
     }
 
     #texto-arriba {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .nombre-resultado, .resultado {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    hr {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    details {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) { /* Celular */
+    h1, #logo {
+        margin-left: 8px;
+    }
+
+    #marca {
+        margin-top: 15px;
+    }
+
+    #buscador {
+        width: 100%; 
+    }
+
+    #busqueda, #buscador button, #categoria {
+        font-size: 12px;
+    }
+
+    #titulo, #titulo_2 {
+        font-size: 18px;
+    }
+
+    .titulo-resultado, #titulo-leyes {
+        font-size: 18px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
-    .contenedor {
-        margin: 20px 10px;
+    .parrafo, #leyes {
+        font-size: 12px;
+    }
+
+    #texto-arriba {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .nombre-resultado, .resultado {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    hr {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    details {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
-

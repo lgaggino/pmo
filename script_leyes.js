@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    fetch('https://deissms.github.io/buscador_m/consolidado.json')
+    fetch('https://deissms.github.io/buscador_m/consolidado_leyes.json')
     .then(response => response.json())
     .then(data => {
         let categories = [...new Set(data.map(item => item.categoria))];
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('categoria').addEventListener('change', function(e) {
             document.getElementById('busqueda').value = '';
         });
-        
+
         document.getElementById('buscador').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('texto-seccion').innerHTML = ''; // limpia los resultados anteriores
@@ -44,8 +44,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     }
                     return '<p class="nombre-resultado">'+ obj.nombre +'</p>' +
                         '<p class="resultado">CategorÍa: ' + obj.categoria + '</p>' +
-                        '<p class="resultado">SubcategorÍa: ' + obj.subcategoria + '</p>' +
-                        '<p class="resultado">Normativa que la incluye: ' + obj.norma + '</p>' +
+                        '<p class="resultado">Normativa que la incluye: ' + obj.norma + ', ' + obj.norma_1 + ', ' + obj.norma_2 + '</p>' +
                         '<p class="resultado"><b>Nivel de cobertura: ' + coberturaText + '</b></p>' +
                         '<p class="resultado">Recomendaciones de uso: ' + obj.recomendaciones + '</p>';
                 });
@@ -56,13 +55,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 <div class="acciones">
                     <button id="descargar-resultados" class="boton-accion">Descargar Resultados</button>
                     <button id="descargar-consolidado" class="boton-accion">Descargar Canasta Prestacional</button>
-                    <a href="https://www.argentina.gob.ar/normativa/nacional/resolución-201-2002-73649/actualizacion" target="_blank" class="boton-accion">Ver legislación</a>
+                    <button id="ver-legislacion" class="boton-accion">Ver legislación</button>
                 </div>
                 <h2 class="titulo-resultado">${tituloResultado}</h2>
                 ` + coberturas.join('<hr>');
 
                 document.getElementById('descargar-consolidado').addEventListener('click', function() {
-                  window.location.href = 'data/consolidado.xlsx'; // Cambiar la ruta del archivo si es necesario
+                window.location.href = 'data/consolidado_leyes.xlsx'; 
+                });
+
+                document.getElementById('ver-legislacion').addEventListener('click', function() {
+                window.open('legislacion.html', '_blank');
                 });
 
                 document.getElementById('descargar-resultados').addEventListener('click', function() {
@@ -82,13 +85,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     return [
                         obj.nombre,
                         obj.categoria,
-                        obj.subcategoria,
                         obj.norma,
+                        obj.norma_1,
+                        obj.norma_2,
                           isNumeric(obj.cobertura) ? (obj.cobertura * 100) + '%' : obj.cobertura,
                         obj.recomendaciones
                     ];
                 });
-                  ws_data.unshift(["Nombre", "Categoría", "Subcategoría", "Normativa", "Nivel de cobertura", "Recomendaciones"]); // Añadir encabezados de columna
+                  ws_data.unshift(["Nombre", "Categoría", "Normativa", "Normativa 1", "Normativa 2", "Nivel de cobertura", "Recomendaciones"]); // Añadir encabezados de columna
 
                 var ws = XLSX.utils.aoa_to_sheet(ws_data);
 
@@ -103,18 +107,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 alert('No se encontró el valor buscado');
             }
         });
+        
     })
     .catch(error => console.error('Error:', error));
-});
-
-document.getElementById('pmo').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.open('pmo.html', '_blank');
-});
-
-document.getElementById('leyes').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.open('leyes.html', '_blank');
 });
 
 function isNumeric(n) {
@@ -122,8 +117,8 @@ return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 function s2ab(s) { 
-    var buf = new ArrayBuffer(s.length);
-    var view = new Uint8Array(buf); 
-    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; 
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);  //create uint8array as viewer
+    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
     return buf;    
 }
